@@ -30,7 +30,7 @@ def recognize_command():
             recognizer.energy_threshold += 500  # Increase the energy threshold
         except sr.WaitTimeoutError:
             print("You didn't say anything. Please try again.")
-            return None  # Return None when the user doesn't say anything
+            return None
         
     try:
         command = recognizer.recognize_google(audio)
@@ -38,7 +38,7 @@ def recognize_command():
         return command.lower()
     except sr.UnknownValueError:
         print("You mumbled something unrecognizable. Please try again.")
-        return None  # Treat as if the user didn't say anything
+        return None
     except sr.RequestError:
         print("I felt a severed thread from a vast interconnect web. (Network Issues)")
     return ""
