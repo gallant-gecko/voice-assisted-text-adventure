@@ -1,6 +1,6 @@
 import speech_recognition as sr
 
-# Define the game's storyline and choices
+# Define game's branching paths
 game = {
     "start": {
         "text": "You are in a dark room. Do you want to go 'left' or 'right'?",
