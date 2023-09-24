@@ -3,15 +3,19 @@ import speech_recognition as sr
 # Define the game's storyline and choices
 game = {
     "start": {
-        "text": "You are in a dark room. Do you want to go left or right?",
+        "text": "You are in a dark room. Do you want to go 'left' or 'right'?",
         "options": {"left": "left_room", "right": "right_room"}
     },
     "left_room": {
-        "text": "You find a treasure chest! Do you want to open it or leave?",
+        "text": "You find a treasure chest! Do you want to 'open' it or 'leave'?",
         "options": {"open": "treasure", "leave": "start"}
     },
-    "right_room": {"text": "Oh no! It's a trap room. You are back to start.", "options": {"continue": "start"}},
-    "treasure": {"text": "Congratulations! You found the treasure!", "options": {}}
+    "right_room": {
+        "text": "Oh no! It's a trap room. You are back to start. Should you 'continue'?", 
+        "options": {"continue": "start"}},
+    "treasure": {
+        "text": "Congratulations! You found the treasure!", 
+        "options": {}}
 }
 
 def recognize_command():
