@@ -27,7 +27,7 @@ def recognize_command():
         recognizer.adjust_for_ambient_noise(source, duration=2)  # Adjusting for ambient noise
         try:
             audio = recognizer.listen(source, timeout=5)  # 5 seconds timeout
-            recognizer.energy_threshold += 1000  # Increase the energy threshold
+            recognizer.energy_threshold += 500  # Increase the energy threshold
         except sr.WaitTimeoutError:
             print("You didn't say anything. Please try again.")
             return None  # Return None when the user doesn't say anything
