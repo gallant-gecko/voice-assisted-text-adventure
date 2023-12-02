@@ -7,46 +7,46 @@ completed_actions = set()
 # Define game's branching paths
 game = {
     "start": {
-        "text": "You find yourself at the entrance of a dimly lit cave. Do you want to 'enter' deeper into the cave or 'climb' upwards?",
+        "text": "You find yourself at the entrance of a dimly lit cave. Do you want to [enter] deeper into the cave or [climb] upwards?",
         "options": {"enter": "river", "climb": "campsite"}
     },
     "river": {
-        "text": "You stumble upon an underground river. Do you want to 'swim', 'boat', or 'back'?",
+        "text": "You stumble upon an underground river. Do you want to [swim], [boat], or [back]?",
         "options": {"swim": "cavern", "boat": "door", "back": "start"}
     },
     "campsite": {
-        "text": "You discover an abandoned campsite. Do you want to 'search', 'ascend', or 'descend'?",
+        "text": "You discover an abandoned campsite. Do you want to [search], [ascend], or [descend]?",
         "options": {"search": "library", "ascend": "chamber", "descend": "start"}
     },
     "cavern": {
-        "text": "You're in a cavern filled with glowing crystals. Do you want to 'collect', 'search', or 'return'?",
+        "text": "You're in a cavern filled with glowing crystals. Do you want to [collect], [search], or [return]?",
         "options": {"collect": "cavern", "search": "maze", "return": "river"},
         "actions": {"collect": 10}  # Collecting crystals grants 10 points to score
     },
     "door": {
-        "text": "You find a mysterious door with inscriptions. Do you want to 'open', 'examine', or 'leave'?",
+        "text": "You find a mysterious door with inscriptions. Do you want to [open], [examine], or [leave]?",
         "options": {"open": "door_locked", "examine": "library", "leave": "river"},
         "actions": {"open": "The door won't budge. It may need a closer look."}  # Provide feedback instead of points
     },
     "library": {
-        "text": "You're in an ancient library. Do you want to 'look', 'read' the ancient tome, or 'exit'?",
-        "options": {"look": "chamber", "read": "library", "exit": "campsite"},
+        "text": "You're in an ancient library. Do you want to [explore], [read] the ancient tome, or [exit]?",
+        "options": {"explore": "chamber", "read": "library", "exit": "campsite"},
         "actions": {"read": 10}  # Reading ancient tome grants 10 points to score 
     },
     "chamber": {
-        "text": "You discover a hidden chamber with a pedestal. Do you want to 'approach', 'look', or 'leave'?",
+        "text": "You discover a hidden chamber with a pedestal. Do you want to [approach], [look], or [leave]?",
         "options": {"approach": "dragon", "look": "maze", "leave": "campsite"}
     },
     "lava": {
-        "text": "You're at the edge of a lava pit. Do you want to 'cross', 'find', or 'retreat'?",
+        "text": "You're at the edge of a lava pit. Do you want to [cross], [find], or [retreat]?",
         "options": {"cross": "maze", "find": "cavern", "retreat": "library"}
     },
     "maze": {
-        "text": "You've entered a confusing maze of tunnels. Do you want to 'left', 'right', or 'straight'?",
+        "text": "You've entered a confusing maze of tunnels. Do you want to [left], [right], or [straight]?",
         "options": {"left": "chamber", "right": "lava", "straight": "dragon"}
     },
     "dragon": {
-        "text": "You've entered a dragon's lair! The dragon is asleep but stirs slightly as you approach. Do you want to 'fight' the dragon, 'sneak' past it, or 'talk' to it?",
+        "text": "You've entered a dragon's lair! The dragon is asleep but stirs slightly as you approach. Do you want to [fight] the dragon, [sneak] past it, or [talk] to it?",
         "options": {"fight": "lava", "sneak": "exit", "talk": "riddle"},
         "actions": {"sneak": 5}  # Minor points for Sneaking past the dragon action
     },
@@ -88,20 +88,23 @@ def recognize_command(retries=3):
 def play_game():
     global score, completed_actions
     current_scene = "start"
+    print("Welcome to the adventure! You can say 'quit' at any time to exit the game.")
+
     while True:
         scene = game[current_scene]
         
         # Print the scene text
         print(scene["text"])
         
-        # Check if the scene has options, if not, game over
-        if not scene["options"]:
-            print(f"Your final score is {score}.")
-            break
-        
         # Get the player's command
         command = recognize_command()
         
+        # Check for 'quit' command to exit the game
+        if command == "quit":
+            print("Closing the game...")
+            print("Thanks for playing!")
+            break
+
         # If command is None, skip to the next iteration
         if command is None:
             continue
