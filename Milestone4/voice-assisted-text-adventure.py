@@ -88,7 +88,7 @@ def recognize_command(retries=3):
 def play_game():
     global score, completed_actions
     current_scene = "start"
-    print("Welcome to the adventure! You can say 'quit' at any time to exit the game.")
+    print("Welcome to the adventure! You can say [quit] at any time to exit the game.")
 
     while True:
         scene = game[current_scene]
