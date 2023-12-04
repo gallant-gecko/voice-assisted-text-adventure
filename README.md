@@ -27,4 +27,8 @@ Speak the word and the option will be selected.
 ## Troubleshooting
 If your voice commands are not being accepted, you may need to reduce your mic sensativity or adjust recognizer.energy_threshold variable to be higher to reduce ambient noise.
 
-```
+## Changelog
+Milestone1 added a basic prototype that had few rooms and expected functionality.
+Milestone2 added a progression of rooms to explore and navigate through, leading to a confrontation with a dragon. (+10 Room Minimum)
+Milestone3 added a scoring system based on player actions and improved timeouts for voice actions. (Points are obtained from reading the ancient tome, gathering crystals, etc)
+Milestone4 added improvements to the overall gameplay experience gathered from usability testing. (Ability to exit game at any time, clarified user voice options, etc.)
